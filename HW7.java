@@ -1,9 +1,7 @@
-import java.util.Scanner;
 class HW7 {
 	public static void main (String[] args){
-		System.out.println("Enter the temperature (F):");
-			Scanner in = new Scanner(System.in);
-			int a = in.nextInt();
-		System.out.println(a + "(F) = "+ ((a-32)*5/9) + "(C)");
+		int t = Integer.parseInt(args[0]);
+			int b = 9*t/5+32;
+		System.out.println(t + "(C) = "+ b + "(F)");
 		}
 }
