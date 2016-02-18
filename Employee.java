@@ -1,4 +1,4 @@
-public class Employee {
+public class Employee implements Comparable {
 	private long inn;
 	private String name;
 	private String sername;
@@ -36,5 +36,16 @@ public class Employee {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
+	
+	@Override
+	public String toString() {
+		return "INN: " + inn + " Name: " + name + " Sername: " + sername + " Salary: " + salary;
+	}
+	
+	public int compareTo(Object obj){
+		return name.compareTo(((Employee)obj).name);
+	}
+	
+	
 	
 }
