@@ -11,8 +11,8 @@ public class HW56 {
 			double bonus = 0;
 			String temp;
 		
-		int countEmployee = 4;
-		int countManager = 2;
+		int countEmployee = 10;
+		int countManager = 5;
 		Employee[] fabrika = new Employee[countEmployee];
 		FabrikaManager[] fabrikaManager = new FabrikaManager[countManager];
 		int managerArrayIndex = 0;
@@ -21,7 +21,7 @@ public class HW56 {
 		
 		for(int i = 0; i < countEmployee; i++){
 			if(i < (countEmployee-countManager)){
-				temp = enterEmployee(i);
+				temp = enterEmployee(i, in);
 				words = temp.split(" ");
 				inn = Long.parseLong(words[0]);
 				name = words[1];
@@ -30,7 +30,7 @@ public class HW56 {
 				fabrika[i] = new Employee(inn, name, sername, salary);
 			}
 			else {
-				temp = enterFabrikaManager(i);
+				temp = enterFabrikaManager(i, in);
 				words = temp.split(" ");
 				inn = Long.parseLong(words[0]);
 				name = words[1];
@@ -114,15 +114,15 @@ public class HW56 {
 			return number;
 		}
 	// Enter strings in array from console
-		static String enterEmployee(int i){
-			Scanner in = new Scanner(System.in);
+		static String enterEmployee(int i, Scanner in){
+			
 			String str;
 				System.out.println("Enter INN, Name, Sername and Salary of employee number " + (i + 1) + " : ");
 				str = in.nextLine();
 			return str;
 		}
-		static String enterFabrikaManager(int i){
-			Scanner in = new Scanner(System.in);
+		static String enterFabrikaManager(int i, Scanner in){
+			
 			String str;
 				System.out.println("Enter INN, Name, Sername, Salary and Bonus of manager number " + (i + 1) + " : ");
 				str = in.nextLine();
