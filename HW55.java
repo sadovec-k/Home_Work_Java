@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class HW55 {
 	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
 		String[] words = new String[4];
 			long inn = 0;
 			String name;
@@ -12,7 +13,7 @@ public class HW55 {
 		
 		
 		for(int i = 0; i < fabrika.length; i++){
-			temp = enterEmployee(i);
+			temp = enterEmployee(i, in);
 			words = temp.split(" ");
 			inn = Long.parseLong(words[0]);
 			name = words[1];
@@ -69,8 +70,8 @@ public class HW55 {
 			System.out.println();
 		}
 	// Enter strings in array from console
-		static String enterEmployee(int i){
-			Scanner in = new Scanner(System.in);
+		static String enterEmployee(int i, Scanner in){
+			
 			String str;
 				System.out.println("Enter INN, Name, Sername and Salary of employee number " + (i + 1) + " : ");
 				str = in.nextLine();
