@@ -7,10 +7,11 @@ public class HW55 {
 			String sername;
 			double salary = 0;
 			String temp;
-		Employee[] fabrika = new Employee[10];
-		int countEmployy = 10;
+			int countEmployy = 10;
+		Employee[] fabrika = new Employee[countEmployy];
 		
-		for(int i = 0; i < countEmployy; i++){
+		
+		for(int i = 0; i < fabrika.length; i++){
 			temp = enterEmployee(i);
 			words = temp.split(" ");
 			inn = Long.parseLong(words[0]);
@@ -20,32 +21,32 @@ public class HW55 {
 			fabrika[i] = new Employee(inn, name, sername, salary);
 		} 
 			
-		printA(fabrika, countEmployy);
-		printB(fabrika, countEmployy);
-		printMinSalary(fabrika, countEmployy);
-		printMaxSalary(fabrika, countEmployy);
+		printA(fabrika);
+		printB(fabrika);
+		printMinSalary(fabrika);
+		printMaxSalary(fabrika);
 	}
-		static void printA(Employee fabrika[], int countEmployy){
+		static void printA(Employee fabrika[]){
 			System.out.println("   INN         Name     Sername     Salary   " );
-			for(int i = 0; i < countEmployy; i++){
+			for(int i = 0; i < fabrika.length; i++){
 				System.out.println(fabrika[i].getInn() + "     " + fabrika[i].getName() + "     " + fabrika[i].getserName() + "        " + fabrika[i].getSalary());
 			}
 			System.out.println();
 		}
 		
-		static void printB(Employee fabrika[], int countEmployy){
+		static void printB(Employee fabrika[]){
 			double salaryAll = 0;
-			for(int i = 0; i < countEmployy; i++){
+			for(int i = 0; i < fabrika.length; i++){
 				salaryAll += fabrika[i].getSalary();
 			}
 			System.out.println("Sallary of all staff =  " + salaryAll );
 			System.out.println();
 		}
 		
-		static void printMinSalary(Employee fabrika[], int countEmployy){
+		static void printMinSalary(Employee fabrika[]){
 			double minSalary = fabrika[0].getSalary();
 			int number = 0;
-			for(int i = 1; i < countEmployy; i++){
+			for(int i = 1; i < fabrika.length; i++){
 				if (minSalary > fabrika[i].getSalary()){
 					minSalary = fabrika[i].getSalary();
 					number = i;
@@ -55,10 +56,10 @@ public class HW55 {
 			System.out.println();
 		}
 		
-		static void printMaxSalary(Employee fabrika[], int countEmployy){
+		static void printMaxSalary(Employee fabrika[]){
 			double maxSalary = fabrika[0].getSalary();
 			int number = 0;
-			for(int i = 1; i < countEmployy; i++){
+			for(int i = 1; i < fabrika.length; i++){
 				if (maxSalary < fabrika[i].getSalary()){
 					maxSalary = fabrika[i].getSalary();
 					number = i;
