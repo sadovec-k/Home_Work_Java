@@ -11,14 +11,12 @@ public class HW56 {
 			double bonus = 0;
 			String temp;
 		
-		int countEmployee = 10;
-		int countManager = 5;
+		int countEmployee = 4;
+		int countManager = 2;
 		Employee[] fabrika = new Employee[countEmployee];
 		FabrikaManager[] fabrikaManager = new FabrikaManager[countManager];
 		int managerArrayIndex = 0;
-		String[] sort = new String[countEmployee];
-		int[] index = new int[countEmployee];
-		
+			
 		for(int i = 0; i < countEmployee; i++){
 			if(i < (countEmployee-countManager)){
 				temp = enterEmployee(i, in);
@@ -42,10 +40,17 @@ public class HW56 {
 				fabrika[i] = fabrikaManager[managerArrayIndex];
 				managerArrayIndex++;
 			}
-		
 		} 
 		for (int i = 0; i < 100; i++){
-			System.out.println("Enter the type of report : \n a - list of all Employees, \n b - print salary of all stuff, \n c - find employee with min salary, \n d - find employee with max salary, \n for exit - print exit");
+			System.out.println("Enter the type of report : "
+					+ "\n b - print salary of all stuff, "
+					+ "\n c - find employee with min salary, "
+					+ "\n d - find employee with max salary, "
+					+ "\n n - list of all Employees(sort by Name + Sername), "
+					+ "\n i - list of all Employees(sort by Inn), "
+					+ "\n e - list of all Employees(sort by Sername), "
+					+ "\n s - list of all Employees(sort by Salary), "
+					+ "\n for exit - print exit");
 			temp = in.next();
 			if (temp.compareTo("exit")==0){
 				return;
@@ -62,22 +67,33 @@ public class HW56 {
 				System.out.println("Max Salary : " + fabrika[printMaxSalary(fabrika, countEmployee)]);
 				System.out.println();	
 			}
-			else if (temp.charAt(0) == 'a'){
-				printA(fabrika, countEmployee);
-				
+			else if (temp.charAt(0) == 'n'){
+				Arrays.sort(fabrika);
+				print(fabrika, countEmployee);
+			}
+			else if (temp.charAt(0) == 'i'){
+				Arrays.sort(fabrika,InnComparator);
+				print(fabrika, countEmployee);
+			}
+			else if (temp.charAt(0) == 'e'){
+				Arrays.sort(fabrika,SernameComparator);
+				print(fabrika, countEmployee);
+			}
+			else if (temp.charAt(0) == 's'){
+				Arrays.sort(fabrika,SalaryComparator);
+				print(fabrika, countEmployee);
 			}
 			else {
 				System.out.println("Enter correct type of report");
 			}
 			i--;
 			}
-	
 	}
 		
-		static void printA(Employee fabrika[], int countEmployee){
-			System.out.println("   INN         Name     Sername     Salary   " );
+		static void print(Employee fabrika[], int countEmployee){
+			System.out.printf("%-15s%-20s%-20s%-12s%n", "INN", "Name", "Sername", "Salary" );
 			for(int i = 0; i < countEmployee; i++){
-				System.out.println(fabrika[i].getInn() + "     " + fabrika[i].getName() + "     " + fabrika[i].getserName() + "        " + fabrika[i].getSalary());
+				System.out.printf("%-15d%-20s%-20s%-10.2f%n", fabrika[i].getInn(), fabrika[i].getName(), fabrika[i].getserName(), fabrika[i].getSalary());
 			}
 			System.out.println();
 		}
@@ -115,19 +131,43 @@ public class HW56 {
 		}
 	// Enter strings in array from console
 		static String enterEmployee(int i, Scanner in){
-			
 			String str;
 				System.out.println("Enter INN, Name, Sername and Salary of employee number " + (i + 1) + " : ");
 				str = in.nextLine();
 			return str;
 		}
 		static String enterFabrikaManager(int i, Scanner in){
-			
 			String str;
 				System.out.println("Enter INN, Name, Sername, Salary and Bonus of manager number " + (i + 1) + " : ");
 				str = in.nextLine();
 			return str;
 		}
+		
+	public static Comparator<Employee> InnComparator = new Comparator<Employee>(){
+		public int compare (Employee e1, Employee e2){
+			int result =0;
+			if (e1.getInn() > e2.getInn()){
+				result =1; 
+			}
+			else if (e1.getInn() < e2.getInn()){
+				result = -1;
+			}
+			else {
+			result = 0;
+			}
+		return result;}
+	};	
 	
-
+	public static Comparator<Employee> SalaryComparator = new Comparator<Employee>(){
+		public int compare (Employee e1, Employee e2){
+			return (int) (e1.getSalary()- e2.getSalary());
+		}
+	};	
+	
+	public static Comparator<Employee> SernameComparator = new Comparator<Employee>(){
+		public int compare (Employee e1, Employee e2){
+			
+			return e1.getserName().compareTo(e2.getserName());
+		}
+	};	
 }
